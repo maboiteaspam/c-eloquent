@@ -2,8 +2,7 @@
 
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 
-C\Eloquent module provides `eloquent` database framework
-integration for C modules.
+C\Eloquent module provides `Eloquent` database framework integration for `C` modules.
 
 C is a lightweight framework dedicated to frontend development for php applications.
 
