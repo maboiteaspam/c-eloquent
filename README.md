@@ -54,8 +54,6 @@ $app = new Application();
 
 $config = [
     'env'=>'dev',
-    'blogdata.provider'     => "Eloquent",
-//  'blogdata.provider'   => "PO",
     'capsule.connections' => [
         "default"=>[
             'driver'    => 'sqlite',
