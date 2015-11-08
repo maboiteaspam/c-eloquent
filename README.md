@@ -28,7 +28,7 @@ then run `composer update`.
 ,
     {
       "type": "git",
-      "url": "git@github.com:[this user/this repo].git
+      "url": "git@github.com:maboiteaspam/c-eloquent.git
     }
 
 shell
@@ -38,7 +38,7 @@ shell
 or run `c2-bin require-gh -m=...`
 
 ```
-c2-bin require-gh -m=[this user/this repo]
+c2-bin require-gh -m=maboiteaspam/c-eloquent
 ```
 
 
