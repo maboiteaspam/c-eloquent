@@ -1,0 +1,7 @@
+phpunit.phar
+composer.phar
+run/
+vendor/
+node_modules/
+screenshots/
+composer.lock
