@@ -84,10 +84,10 @@ $config = [
 foreach ($config as $k=>$v) {
     $app[$k] = $v;
 }
+
+
 $eloquent = new Eloquent();
 $app->register($eloquent);
-$blog = new BlogData();
-$app->register($blog);
 
 
 $app->boot();
