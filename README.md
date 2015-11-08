@@ -100,12 +100,6 @@ $app->boot();
 
 This module exposes those configuration values,
 
-##### blogdata.provider
-
-`blogdata.provider` to select the underlying data provider.
-
-Currently it supports `PO` and `Eloquent`.
-
 ##### capsule.connections
 
 `capsule.connections` to define multiple eloquent database connections.
