@@ -90,9 +90,16 @@ class ServiceProvider implements ServiceProviderInterface
             }
 
             // you can use capsule.use_connection to define the connection to use
-            // otherwise it fallback to the environment name
+            // otherwise it fallback
+            // if there is a corresponding capsule.connections
+            //      to the environment name
+            // otherwise
+            //      to default
             if (!isset($app['capsule.use_connection'])) {
-                if (isset($app['env'])) $app['capsule.use_connection'] = $app['env'];
+                if (isset($app['env']) && isset($app['capsule.connections'][$app['env']]))
+                    $app['capsule.use_connection'] = $app['env'];
+                else
+                    $app['capsule.use_connection'] = 'default';
             }
             // always set a default connection
             if (!isset($app['capsule.connections']['default'])) {
@@ -116,7 +123,7 @@ class ServiceProvider implements ServiceProviderInterface
     {
         // override default schema loader
         $app['schema.fs'] = $app->extend('schema.fs',
-            $app->share(function(\C\Schema\Loader $base, $app) {
+            $app->share(function(\C\Schema\Loader $base) use($app) {
                 $loader = new \C\Eloquent\Loader($base->getRegistry());
                 $loader->setCapsuleConfig($app['capsule.connections']);
                 return $loader;
@@ -134,33 +141,6 @@ class ServiceProvider implements ServiceProviderInterface
                 $k = $capsule->getConnection()->select($sql);
                 return $k;
             });
-        }
-
-        // create sqlite database file prior eloquent boot
-        $connection = null;
-        if (isset($app['capsule.connection'])) {
-            $connection = $app['capsule.connection'];
-        }
-        if (isset($app['capsule.use_connection'])) {
-            $connection = $app['capsule.use_connection'];
-        }
-        if ($connection===null) {
-            $connection = 'default';
-        }
-        if (isset($app['capsule.connections'])) {
-            if (isset($app['capsule.connections'][$connection])) {
-                $connection = $app['capsule.connections'][$connection];
-                if ($connection["driver"]==='sqlite') {
-                    if ($connection["database"]!==':memory:') {
-                        $exists = file_exists($connection['database']);
-                        if (!$exists) {
-                            $dir = dirname($connection["database"]);
-                            if (!is_dir($dir)) mkdir($dir, 0700, true);
-                            touch($connection["database"]);
-                        }
-                    }
-                }
-            }
         }
 
         // enable query logging
