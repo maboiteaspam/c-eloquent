@@ -1,5 +1,5 @@
 <?php
-namespace C\Eloquent\Schema;
+namespace C\Eloquent;
 
 use C\Schema\ISchema;
 use Illuminate\Database\Capsule\Manager as Capsule;
@@ -10,7 +10,7 @@ use Illuminate\Database\Capsule\Manager as Capsule;
  *
  * @package C\Eloquent\Schema
  */
-abstract class EloquentSchema implements ISchema{
+abstract class Schema implements ISchema{
 
     /**
      * @var Capsule

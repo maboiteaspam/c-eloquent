@@ -114,6 +114,16 @@ class ServiceProvider implements ServiceProviderInterface
     }
     public function boot(Application $app)
     {
+        // override default schema loader
+        $app['schema.fs'] = $app->extend('schema.fs',
+            $app->share(function(\C\Schema\Loader $base, $app) {
+                $loader = new \C\Eloquent\Loader($base->getRegistry());
+                $loader->setCapsuleConfig($app['capsule.connections']);
+                return $loader;
+            })
+        );
+
+
         // a new tag computer is registered
         // to bind sql queries to the cache system
         if (isset($app['httpcache.tagger'])) {

@@ -1,8 +1,5 @@
 <?php
-
-namespace C\Repository;
-
-use C\Schema\Repository;
+namespace C\Eloquent;
 
 use Illuminate\Database\Capsule\Manager as Capsule;
 
@@ -13,7 +10,7 @@ use Illuminate\Database\Capsule\Manager as Capsule;
  *
  * @package C\Repository
  */
-abstract class EloquentRepository extends Repository{
+abstract class Repository extends \C\Repository\Repository{
 
     /**
      * @var \Illuminate\Database\Capsule\Manager
